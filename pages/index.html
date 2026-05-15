@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arquivo das Histórias Sombrias</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Georgia, serif;
+      background: radial-gradient(circle at top, #160010, #000);
+      color: #eaeaea;
+    }
+
+    header {
+      text-align: center;
+      padding: 70px 20px 30px;
+    }
+
+    h1 {
+      font-size: 3rem;
+      color: #b3002d;
+      letter-spacing: 3px;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      max-width: 750px;
+      margin: auto;
+      opacity: 0.85;
+      line-height: 1.7;
+      font-style: italic;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 22px;
+      padding: 40px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(179,0,45,0.35);
+      border-radius: 12px;
+      padding: 18px;
+      transition: 0.3s;
+    }
+    
+    .card:hover {
+      transform: scale(1.02);
+      border-color: #ff2e63;
+    }
+
+    .card h2 {
+      color: #ff2e63;
+      margin-top: 0;
+      letter-spacing: 1px;
+    }
+    .card-img-container {
+      width: 100%;
+      height: 200px;
+      overflow: hidden;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      border: 1px solid rgba(179,0,45,0.5);
+    }
+    .card-img-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .form {
+      text-align: center;
+      padding: 30px 20px;
+    }
+
+    input,
+    textarea {
+      width: 90%;
+      max-width: 600px;
+      margin: 10px auto;
+      display: block;
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      background: #1a1a1a;
+      color: #fff;
+      font-size: 1rem;
+    }
+
+    button {
+      margin-top: 12px;
+      padding: 12px 22px;
+      background: #7a001f;
+      border: none;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+      letter-spacing: 1px;
+      font-size: 1rem;
+    }
+
+    button:hover {
+      background: #b3002d;
+    }
+
+    .stories {
+      padding: 20px 40px 60px;
+    }
+
+    .story {
+      background: rgba(255,255,255,0.04);
+      border-left: 4px solid #7a001f;
+      padding: 16px;
+      margin-bottom: 14px;
+      border-radius: 6px;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .story h3 {
+      color: #ff2e63;
+      margin: 0 0 6px 0;
+      letter-spacing: 1px;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Arquivo das Sombras</h1>
+
+    <p class="subtitle">
+      Nas horas em que o world silencia, existem narrativas que permanecem.
+      Este é um compêndio de histórias antigas, relatos esquecidos e ecos que resistem ao tempo.
+      Desde o Conde Drácula até os sussurros que habitam as cidades modernas,
+      aqui repousam fragmentos da noite eterna.
+    </p>
+  </header>
+
+  <section class="grid">
+
+    <div class="card">
+      <div class="card-img-container">
+        <img src="https://i1-c.pinimg.com/1200x/75/d0/8d/75d08d02ed8b7276aa2e25311a0d9869.jpg" alt = "Conde Drácula">
+      </div>
+      <h2>Conde Drácula</h2>
+      <p>
+        Antes de se tornar o monstro que assombra os cinemas, Drácula foi Vlad III, príncipe da Valáquia (atual Romênia).
+        Ele era membro da Ordem do Dragão (daí o nome Dracul), uma ordem de cavaleiros que defendia o cristianismo no Leste Europeu.
+       Vlad ficou conhecido pelo apelido Tepes (o Empalador), devido à sua forma brutal de punir inimigos.
+        Sua crueldade era tamanha que as lendas diziam que ele jantava enquanto observava florestas de estacas ao seu redor.
+      </p>
+    </div>
+
+
+  </section>
+
+  <section class="form">
+
+    <h2>Submeta sua narrativa sombria</h2>
+
+    <input type="text" id="title" placeholder="Título da história">
+
+    <textarea id="text" rows="5"
+      placeholder="Escreva aqui sua história favorita..."></textarea>
+
+    <button onclick="addStory()">
+      Adicionar ao Arquivo
+    </button>
+
+  </section>
+
+  <section class="stories">
+
+    <h2 style="text-align:center;">
+      Narrativas Registradas
+    </h2>
+
+    <div id="storyList"></div>
+
+  </section>
+
+  <script>
+
+    function addStory() {
+
+      const title =
+        document.getElementById("title").value.trim();
+
+      const text =
+        document.getElementById("text").value.trim();
+
+      if (title === "" || text === "") {
+        alert("Preencha todos os campos.");
+        return;
+      }
+
+      const container =
+        document.getElementById("storyList");
+
+      const story =
+        document.createElement("div");
+
+      story.className = "story";
+
+      story.innerHTML =
+        "<h3>" + title + "</h3>" +
+        "<p>" + text + "</p>";
+
+      container.prepend(story);
+
+      document.getElementById("title").value = "";
+      document.getElementById("text").value = "";
+    }
+
+  </script>
+
+</body>
+</html>

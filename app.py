@@ -64,6 +64,7 @@ def main():
         Para mim, programar em Python é como desenhar: exige precisão, mas permite 
         uma liberdade criativa imensa.
         """)
+        st.video("https://youtu.be/VK9b8nTl9Vo?list=RDVK9b8nTl9Vo")
         st.markdown("**⚰️Playlist Atual:** Helena(Three Cheers sweet Revenge) My Chemical Romance*")
         contato()
 
